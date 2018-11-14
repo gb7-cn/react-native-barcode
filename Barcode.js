@@ -4,22 +4,11 @@
  * Released under the MIT license
  * Copyright (c) 2016 react-native-component <moonsunfall@aliyun.com>
  */
+import React, {Component} from 'react'
+import {AppState, NativeModules, Platform, requireNativeComponent, View,} from 'react-native'
+import PropTypes from 'prop-types';
 
-
-import React, {
-    PropTypes,
-    Component,
-} from 'react'
-import {
-    View,
-    requireNativeComponent,
-    NativeModules,
-    AppState,
-    Platform,
-} from 'react-native'
-
-const BarcodeManager = Platform.OS == 'ios' ? NativeModules.Barcode : NativeModules.CaptureModule
-
+const BarcodeManager = Platform.OS === 'ios' ? NativeModules.Barcode : NativeModules.CaptureModule;
 
 export default class Barcode extends Component {
 
@@ -31,7 +20,7 @@ export default class Barcode extends Component {
         scannerRectLeft: 0,
         scannerLineInterval: 3000,
         scannerRectCornerColor: `#09BB0D`,
-    }
+    };
 
     static propTypes = {
         ...View.propTypes,
@@ -43,39 +32,63 @@ export default class Barcode extends Component {
         scannerRectLeft: PropTypes.number,
         scannerLineInterval: PropTypes.number,
         scannerRectCornerColor: PropTypes.string,
-    }
+    };
 
     render() {
         return (
-            <NativeBarCode
-                {...this.props}
-            />
+            <NativeBarCode {...this.props}/>
         )
+    }
+
+    /**
+     * 开始扫描
+     */
+    startScan() {
+        BarcodeManager.startSession();
+    }
+
+    /**
+     * 停止扫描
+     */
+    stopScan() {
+        BarcodeManager.stopSession();
+    }
+
+    /**
+     * 打开闪光灯
+     * 暂时不支持IOS
+     */
+    openFlash() {
+        if (Platform.OS !== 'ios') {
+            BarcodeManager.startFlash();
+        }
+    }
+
+    /**
+     * 关闭闪光灯
+     * 暂时不支持IOS
+     */
+    closeFlash() {
+        if (Platform.OS !== 'ios') {
+            BarcodeManager.stopFlash();
+        }
     }
 
     componentDidMount() {
         AppState.addEventListener('change', this._handleAppStateChange);
     }
+
     componentWillUnmount() {
         AppState.removeEventListener('change', this._handleAppStateChange);
     }
 
-    startScan() {
-        BarcodeManager.startSession()
-    }
-
-    stopScan() {
-        BarcodeManager.stopSession()
-    }
-
     _handleAppStateChange = (currentAppState) => {
-        if(currentAppState !== 'active' ) {
+        if (currentAppState !== 'active') {
             this.stopScan()
-        }
-        else {
+        } else {
             this.startScan()
         }
     }
 }
 
-const NativeBarCode = requireNativeComponent(Platform.OS == 'ios' ? 'RCTBarcode' : 'CaptureView', Barcode)
+const NativeBarCode = requireNativeComponent(Platform.OS === 'ios' ? 'RCTBarcode' : 'CaptureView', Barcode)

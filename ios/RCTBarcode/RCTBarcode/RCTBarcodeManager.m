@@ -1,8 +1,5 @@
-
 #import "RCTBarcode.h"
 #import "RCTBarcodeManager.h"
-
-
 
 @interface RCTBarcodeManager ()
 
@@ -265,9 +262,9 @@ RCT_EXPORT_METHOD(stopSession) {
     }
 }
 
-
-
-
++ (BOOL)requiresMainQueueSetup {
+    return YES;
+}
 
 - (NSDictionary *)constantsToExport
 {
@@ -295,6 +292,5 @@ RCT_EXPORT_METHOD(stopSession) {
                 }
             };
 }
-
 
 @end
