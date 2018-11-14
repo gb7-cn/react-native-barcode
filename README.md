@@ -22,8 +22,11 @@ npm install https://github.com/Gou-Bo/react-native-barcode.git --save
 3.查看Build Settings->Seach Paths->Header Search Paths是否有$(SRCROOT)/../../../react-native/React并设为recursive
 
 4.将\node_modules\react-native-barcode\ios\raw 文件夹拖到到Xcode项目中（确保文件夹是蓝色的）
+
 ![react-native-barcode-install-ios][4]
+
 5.在info.plist添加相机权限 Privacy - Camera Usage Description：
+
 ![react-native-barcode-install-ios][5]
 
 
