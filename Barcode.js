@@ -59,9 +59,7 @@ export default class Barcode extends Component {
      * 暂时不支持IOS
      */
     openFlash() {
-        if (Platform.OS !== 'ios') {
-            BarcodeManager.startFlash();
-        }
+        BarcodeManager.startFlash();
     }
 
     /**
@@ -69,9 +67,7 @@ export default class Barcode extends Component {
      * 暂时不支持IOS
      */
     closeFlash() {
-        if (Platform.OS !== 'ios') {
-            BarcodeManager.stopFlash();
-        }
+        BarcodeManager.stopFlash();
     }
 
     componentDidMount() {
