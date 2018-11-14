@@ -56,7 +56,6 @@ export default class Barcode extends Component {
 
     /**
      * 打开闪光灯
-     * 暂时不支持IOS
      */
     openFlash() {
         BarcodeManager.startFlash();
@@ -64,7 +63,6 @@ export default class Barcode extends Component {
 
     /**
      * 关闭闪光灯
-     * 暂时不支持IOS
      */
     closeFlash() {
         BarcodeManager.stopFlash();
