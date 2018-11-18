@@ -1,7 +1,7 @@
 {
   "name": "react-native-barcode",
-  "version": "1.0.6",
-  "description": "A smart barcode scanner component for React Native app",
+  "version": "1.0",
+  "description": "一个简单的二维码扫描组件",
   "main": "Barcode.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,7 @@
     "barcode",
     "scan"
   ],
-  "author": "HISAME SHIZUMARU",
+  "author": "苟波",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Gou-Bo/react-native-barcode/issues"
