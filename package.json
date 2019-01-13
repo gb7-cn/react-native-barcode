@@ -1,6 +1,6 @@
 {
   "name": "react-native-barcode",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "一个简单的二维码扫描组件",
   "main": "Barcode.js",
   "scripts": {
